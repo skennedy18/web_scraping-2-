@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" style="color: black;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title style="font-weight: bolder;">Mission to Mars</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <div class="container text-center">
+        <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>  
+      </div>
+    </div>
+    <br>
+
+    <h2 style="font-weight: bolder;">Latest Mars News</h2>
+    <h5 style="font-weight: bolder;">{{mars.news_title}}</h5>
+    <p>{{mars.news_paragraph}}</p>
+
+    <div class="row">
+      <div class="col-lg-7 col-md-7">
+        <h2 style="font-weight: bolder;" >Featured Mars Image</h2>
+          <img src="{{mars.featured_image_url}}" alt="Mars Image" style="width: 90%;">
+      </div>
+          <div class="col-lg-5 col-md-5">
+            <div class="card">
+              <div class="card-body">
+                <h4 style="font-weight: bold">Current Weather on Mars</h4>
+                <h6>{{mars.weather}}</h6>
+              </div>
+            </div>
+              <div class="card-body">
+                <h4 style="font-weight: bold" class="card-title">Mars Facts</h4>
+                <h6>{{mars.facts|safe}}</h6>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+
+<h1 style="text-align: center;"> Mars Hemispheres</h1>
+<hr>
+<br>
+
+<div class="container">    
+  <div class="row">
+    {% for hemi in mars.hemi_urls %}
+    <div class="col-sm-6">
+      <div class="panel panel-primary">
+        <div class="panel-body"><img src="{{hemi.image_url}}" class="img-responsive" style="width:100%" alt="Image"></div>
+        <div class="panel-footer">{{hemi.title}}</div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+</body>
+</html>
